@@ -4,7 +4,7 @@
 int main() {
     Company* company = new Company();
 
-    while (true)
+    while (!company->allBusy)
     {
         company->setBossID();
 

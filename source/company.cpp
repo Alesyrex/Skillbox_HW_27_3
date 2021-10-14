@@ -1,7 +1,8 @@
 #include <iostream>
 #include "company.h"
 
-Team::Team(uint16_t inEmployee_id) : supervisor_id(inEmployee_id)
+Team::Team(uint16_t inEmployee_id)
+          : supervisor_id(inEmployee_id)
 {
     do
     {
@@ -31,7 +32,8 @@ Team::~Team()
 
 }
 
-Company::Company() : boss(0), numberTeams(0)
+Company::Company()
+                : boss(0), numberTeams(0)
 {
     do
     {
@@ -71,11 +73,12 @@ uint16_t Company::getNumberTeams()
 
 Company::~Company()
 {
-    
+
 }
 
 void distributionTask (Company* company)
 {
+    int countNotBusy = 0;
     for (int i=0;i < company->getNumberTeams();i++)
     {
         srand(company->getBossID()+company->groups[i]->getSupervisorId());
@@ -83,13 +86,14 @@ void distributionTask (Company* company)
 
         for (int j=0;(company->groups[i]->numberTasks != 0) && (j < company->groups[i]->getNumberEmployers());++j)
         {
-
             if (company->groups[i]->employers[j]->getTask() == NONE)
             {
                 company->groups[i]->employers[j]->setTask(rand()%3+1);
-                std::cout << company->groups[i]->numberTasks--;
+                company->groups[i]->numberTasks--;
+                countNotBusy++;
             }
         }
     }
+    if (countNotBusy == 0) company->allBusy = true;
 }
 

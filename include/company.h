@@ -24,14 +24,14 @@ class Company
     uint16_t boss;
     uint16_t numberTeams;
 
-
 public:
+    std::vector<Team*> groups;
     Company();
     ~Company();
-    void setBossID ();
     uint16_t getBossID ();
-    std::vector<Team*> groups;
     uint16_t getNumberTeams();
+    void setBossID ();
+    bool allBusy = false;
 };
 
 void distributionTask (Company* company);

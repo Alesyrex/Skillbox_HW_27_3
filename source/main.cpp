@@ -12,5 +12,7 @@ int main() {
     }
 
     std::cout << "All employees have tasks!" << std::endl;
+    delete company;
+    company = nullptr;
     return 0;
 }
